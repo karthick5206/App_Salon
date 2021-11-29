@@ -24,7 +24,8 @@ namespace App.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            XF.Material.iOS.Material.Init();
+            Rg.Plugins.Popup.Popup.Init();
             return base.FinishedLaunching(app, options);
         }
     }

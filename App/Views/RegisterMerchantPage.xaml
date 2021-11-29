@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Views.RegisterMerchantPage"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <panCake:PancakeView BackgroundColor="Gainsboro" CornerRadius="2">
+            <ScrollView>
+                <panCake:PancakeView Grid.Row="1" VerticalOptions="Start" CornerRadius="20" Padding="20" Margin="10" BackgroundColor="WhiteSmoke">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <material:MaterialButton ImageSource="outline_arrow_back_black_24"
+                                                     BackgroundColor="Black"
+                                                     CharacterSpacing="0" AllCaps="False"
+                                                     ButtonType="Text" 
+                                                     Grid.Column="0"  Command="{Binding BackCommand}"/>
+                            <material:MaterialLabel TextType="Text" Text="REGISTER AS MERCHANT" TextColor="Black" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                        </Grid>
+                        <material:MaterialTextField AlwaysShowUnderline="True"  UnderlineColor="Black" Margin="5"
+                                            LeadingIcon="outline_miscellaneous_services_black_24"
+                                                    Choices="{Binding MerchantTypes,Mode=TwoWay}"
+                                                    TextColor="Black"
+                                                    SelectedChoice="{Binding SelectedMerchantType,Mode=TwoWay}"
+                                            Text="{Binding SelectedMerchantType}" Placeholder="Select Service"
+                                        IsAutoCapitalizationEnabled="True" InputType="Choice"/>
+                        <material:MaterialTextField AlwaysShowUnderline="True"  UnderlineColor="Black" Margin="5"
+                                            LeadingIcon="outline_person_black_24"
+                                            Text="{Binding Name}" Placeholder="Name"
+                                        IsAutoCapitalizationEnabled="True" InputType="Text"/>
+                        <material:MaterialRadioButtonGroup Choices="{Binding Genders}" Margin="5"
+                                                           SelectedColor="Black" UnselectedColor="Gray"
+                                                           FlowDirection="LeftToRight"/>
+                        <material:MaterialTextField AlwaysShowUnderline="True"  UnderlineColor="Black" Margin="5"
+                                            LeadingIcon="outline_email_black_24" 
+                                            Text="{Binding Email}" Placeholder="Email"
+                                        IsAutoCapitalizationEnabled="True" InputType="Email"/>
+                        <material:MaterialTextField AlwaysShowUnderline="True"  UnderlineColor="Black" Margin="5"
+                                            LeadingIcon="outline_smartphone_black_24" 
+                                            Text="{Binding MobileNumber}" Placeholder="Mobile Number"
+                                        IsAutoCapitalizationEnabled="True" InputType="Telephone"/>
+                        <material:MaterialButton BackgroundColor="Black" Elevation="4" Text="Generate Otp" CharacterSpacing="0" Margin="5"
+                                                 Command="{Binding OtpCommand}"/>
+                    </StackLayout>
+                </panCake:PancakeView>
+            </ScrollView>
+        </panCake:PancakeView>
+    </ContentPage.Content>
+</ContentPage>

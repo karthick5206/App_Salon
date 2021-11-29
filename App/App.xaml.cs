@@ -13,6 +13,7 @@ namespace App
         {
             InitializeComponent();
             DependencyService.Register<MockDataStore>();
+            XF.Material.Forms.Material.Init(this);
             MainPage = new AppShell();
         }
 

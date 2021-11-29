@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace App.ViewModels
 {
-    public class RegisterViewModel : BaseViewModel
+    public class SetPinPageViewModel : BaseViewModel
     {
         public Command RegisterCommand { get; }
         public Command OtpCommand { get; }
@@ -17,13 +17,13 @@ namespace App.ViewModels
 
         public string ConfirmPassword { get; set; }
 
-        public IReadOnlyList<string> MerchantTypes { get; set; }
-        public IReadOnlyList<string> UserTypes { get; set; }
+        public List<string> MerchantTypes { get; set; }
+        public List<string> UserTypes { get; set; }
 
         public string SelectedMerchantType { get; set; }
         public string SelectedUserType { get; set; }
 
-        public RegisterViewModel()
+        public SetPinPageViewModel()
         {
             MerchantTypes = new List<string>() { "Shop Services", "Home Services" };
             UserTypes = new List<string>() { "User", "Merchant" };
@@ -40,7 +40,9 @@ namespace App.ViewModels
 
         private async void OnOtpClicked()
         {
-
+            var shellVM = Shell.Current.BindingContext as ShellViewModel;
+            shellVM.IsLoginTabVisible = false;
+            await Shell.Current.GoToAsync("//SetPinPage");
         }
     }
 }
