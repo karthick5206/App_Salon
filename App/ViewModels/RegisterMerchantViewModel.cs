@@ -26,6 +26,7 @@ namespace App.ViewModels
 
         public string SelectedMerchantType { get; set; }
         public string SelectedUserType { get; set; }
+        public string SelectedGender { get; set; }
 
         public RegisterMerchantViewModel()
         {

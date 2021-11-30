@@ -23,9 +23,13 @@ namespace App.ViewModels
         public string SelectedMerchantType { get; set; }
         public string SelectedUserType { get; set; }
 
+        public List<string> Genders { get; set; }
+        public string SelectedGender { get; set; }
+
         public SetPinPageViewModel()
         {
             MerchantTypes = new List<string>() { "Shop Services", "Home Services" };
+            Genders = new List<string> { "Male", "Female", "Others" };
             UserTypes = new List<string>() { "User", "Merchant" };
             RegisterCommand = new Command(OnRegisterClicked);
             OtpCommand = new Command(OnOtpClicked);

@@ -26,6 +26,28 @@
                                             LeadingIcon="outline_person_black_24"
                                             Text="{Binding Name}" Placeholder="Name"
                                         IsAutoCapitalizationEnabled="True" InputType="Text"/>
+                        <panCake:PancakeView CornerRadius="2" BackgroundColor="LightGray"  Margin="5">
+                            <Grid BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Gender" TextColor="Gray" Margin="0,3" VerticalOptions="Start" Grid.Column="1" Grid.Row="0" FontSize="Micro"/>
+                                <Image Grid.Row="0" Grid.Column="0" Margin="5,0,0,0" Source="outline_people_black_24"/>
+                                <Picker Grid.Column="1" ItemsSource="{Binding Genders,Mode=TwoWay}" Grid.Row="0"
+                                    TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"
+                                    BackgroundColor="Transparent" Margin="5,10,5,0" SelectedItem="{Binding SelectedGender,Mode=TwoWay}" />
+                                <Rectangle Fill="Black" Grid.Column="0" Grid.ColumnSpan="3" StrokeThickness="2" Grid.Row="1"/>
+                                <Image Grid.Column="2" WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Margin="0,2,3,0"
+                                       Source="outline_arrow_drop_down_black_24" Grid.Row="0" HorizontalOptions="EndAndExpand"/>
+                            </Grid>
+
+                        </panCake:PancakeView>
                         <material:MaterialTextField AlwaysShowUnderline="True"  UnderlineColor="Black" Margin="5"
                                             LeadingIcon="outline_email_black_24" 
                                             Text="{Binding Email}" Placeholder="Email"

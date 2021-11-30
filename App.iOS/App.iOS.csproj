@@ -206,4 +206,22 @@
   <ItemGroup>
     <BundleResource Include="Resources\outline_arrow_back_black_24%402x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\outline_arrow_drop_down_black_24%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\outline_arrow_drop_down_black_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\outline_arrow_drop_down_black_24%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\outline_people_black_24%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\outline_people_black_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\outline_people_black_24%402x.png" />
+  </ItemGroup>
 </Project>

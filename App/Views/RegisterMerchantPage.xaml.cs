@@ -18,5 +18,15 @@ namespace App.Views
             InitializeComponent();
             BindingContext = new RegisterMerchantViewModel();
         }
+
+        private async void MaterialTextField_Focused(object sender, FocusEventArgs e)
+        {
+            if (Shell.Current != null)
+            {
+                App.Current.MainPage = new SelectionPopupPage(Shell.Current);
+            }
+            //await Shell.Current.GoToAsync("//SelectionPopupPage");
+            
+        }
     }
 }
