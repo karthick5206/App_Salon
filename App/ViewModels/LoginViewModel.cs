@@ -32,7 +32,7 @@ namespace App.ViewModels
         {
             var shellVM = Shell.Current.BindingContext as ShellViewModel;
             shellVM.IsLoginTabVisible = false;
-            await Shell.Current.GoToAsync("//RegisterPage");
+            await Shell.Current.GoToAsync("//RegisterMerchantPage");
         }
     }
 }

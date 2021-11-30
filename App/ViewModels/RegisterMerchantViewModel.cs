@@ -1,11 +1,14 @@
-﻿using System;
+﻿using App.Views;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using Xamarin.Forms;
 
 namespace App.ViewModels
 {
-    public class RegisterViewModel : BaseViewModel
+    public class RegisterMerchantViewModel : BaseViewModel
     {
         public Command RegisterCommand { get; }
         public Command OtpCommand { get; }
@@ -17,18 +20,26 @@ namespace App.ViewModels
 
         public string ConfirmPassword { get; set; }
 
-        public IReadOnlyList<string> MerchantTypes { get; set; }
-        public IReadOnlyList<string> UserTypes { get; set; }
+        public List<string> MerchantTypes { get; set; }
+        public List<string> UserTypes { get; set; }
+
+        public List<string> Genders { get; set; }
 
         public string SelectedMerchantType { get; set; }
         public string SelectedUserType { get; set; }
+        public string SelectedGender { get; set; }
 
-        public RegisterViewModel()
+        public RegisterMerchantViewModel()
         {
             MerchantTypes = new List<string>() { "Shop Services", "Home Services" };
             UserTypes = new List<string>() { "User", "Merchant" };
+            Genders = new List<string> { "Male", "Female", "Others" };
             RegisterCommand = new Command(OnRegisterClicked);
             OtpCommand = new Command(OnOtpClicked);
+            SelectedMerchantType = MerchantTypes.First();
+            OnPropertyChanged(nameof(MerchantTypes));
+            OnPropertyChanged(nameof(Genders));
+            OnPropertyChanged(nameof(SelectedMerchantType));
         }
 
         private async void OnRegisterClicked()
@@ -40,7 +51,13 @@ namespace App.ViewModels
 
         private async void OnOtpClicked()
         {
-
+            var shellVM = Shell.Current.BindingContext as ShellViewModel;
+            shellVM.IsLoginTabVisible = false;
+            await Shell.Current.GoToAsync("//SetPinPage");
+            //if (Shell.Current != null)
+            //{
+            //    App.Current.MainPage = new SelectionPopupPage(Shell.Current);
+            //}
         }
     }
 }

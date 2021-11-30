@@ -25,7 +25,9 @@
 
     <TabBar>
         <ShellContent IsVisible="{Binding IsLoginTabVisible}" Title="Login" Icon="icon_about.png" Route="LoginPage" ContentTemplate="{DataTemplate local:LoginPage}" />
-        <ShellContent IsVisible="{Binding IsRegisterTabVisible}" Title="Register" Icon="icon_about.png" Route="RegisterPage" ContentTemplate="{DataTemplate local:RegisterPage}" />
+        <ShellContent IsVisible="{Binding IsRegisterTabVisible}" Title="Register User" Icon="icon_about.png" Route="RegisterPage" ContentTemplate="{DataTemplate local:RegisterUserPage}" />
+        <ShellContent IsVisible="{Binding IsRegisterTabVisible}" Title="Register Merchant" Icon="icon_about.png" Route="RegisterMerchantPage" ContentTemplate="{DataTemplate local:RegisterMerchantPage}" />
+        <ShellContent IsVisible="{Binding IsRegisterTabVisible}" Title="Pin" Icon="icon_about.png" Route="SetPinPage" ContentTemplate="{DataTemplate local:SetPinPage}" />
         <ShellContent Title="About" Icon="icon_about.png" Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
         <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </TabBar>

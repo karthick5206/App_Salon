@@ -11,12 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegisterPage : ContentPage
+    public partial class RegisterUserPage : ContentPage
     {
-        public RegisterPage()
+        public RegisterUserPage()
         {
             InitializeComponent();
-            BindingContext = new RegisterViewModel();
+            BindingContext = new RegisterMerchantViewModel();
         }
     }
 }
