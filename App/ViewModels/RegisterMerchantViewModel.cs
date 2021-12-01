@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -53,6 +54,10 @@ namespace App.ViewModels
             var shellVM = Shell.Current.BindingContext as ShellViewModel;
             shellVM.IsLoginTabVisible = false;
             await Shell.Current.GoToAsync("//SetPinPage");
+            //if (Shell.Current != null)
+            //{
+            //    App.Current.MainPage = new SelectionPopupPage(Shell.Current);
+            //}
         }
     }
 }

@@ -11,7 +11,7 @@
              Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <panCake:PancakeView BackgroundColor="Gainsboro" CornerRadius="2">
+        <panCake:PancakeView BackgroundColor="Gray" CornerRadius="2">
             <ScrollView>
                 <Grid>
                     <Grid.RowDefinitions>

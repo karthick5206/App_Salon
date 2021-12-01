@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\OtpValidationPopupPage.xaml.cs">
+      <DependentUpon>OtpValidationPopupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\SetPinPage.xaml.cs">
       <DependentUpon>SetPinPage.xaml</DependentUpon>
     </Compile>

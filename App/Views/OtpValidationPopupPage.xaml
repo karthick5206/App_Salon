@@ -9,18 +9,18 @@
               CloseWhenBackgroundIsClicked="True"
                xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             x:Class="App.Views.SelectionPopupPage">
+             x:Class="App.Views.OtpValidationPopupPage">
     <ContentPage.Content>
-        <panCake:PancakeView CornerRadius="10" BackgroundColor="WhiteSmoke" VerticalOptions="Center"
-                 HorizontalOptions="FillAndExpand">
+        <panCake:PancakeView CornerRadius="10" HorizontalOptions="FillAndExpand" BackgroundColor="WhiteSmoke" VerticalOptions="Center"
+                 >
             <StackLayout Margin="20,50">
                 <Label HorizontalOptions="Center" TextColor="Black"
-                       Text="Choose Register Option"
+                       Text="Validate Otp"
                        FontSize="16" />
-                <StackLayout Orientation="Horizontal">
-                    <material:MaterialButton Elevation="4" WidthRequest="120" Text="user" CharacterSpacing="0" TextColor="White" BackgroundColor="Black" Margin="5"/>
-                    <material:MaterialButton Elevation="4" WidthRequest="120" Text="merchant" CharacterSpacing="0" TextColor="White" BackgroundColor="Black" Margin="5"/>
-                </StackLayout>
+
+                <material:MaterialTextField LeadingIcon="outline_smartphone_black_24" WidthRequest="120" Placeholder="Enter Otp" UnderlineColor="Black" Margin="5"/>
+                <material:MaterialButton Elevation="4" WidthRequest="120" Text="Validate" Clicked="MaterialButton_Clicked" CharacterSpacing="0" TextColor="White" BackgroundColor="Black" Margin="5"/>
+
             </StackLayout>
         </panCake:PancakeView>
     </ContentPage.Content>

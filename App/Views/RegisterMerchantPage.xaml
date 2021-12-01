@@ -7,9 +7,11 @@
              Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-        <panCake:PancakeView BackgroundColor="Gainsboro" CornerRadius="2">
+        <panCake:PancakeView BackgroundColor="Gray" CornerRadius="2">
             <ScrollView>
-                <panCake:PancakeView Grid.Row="1" VerticalOptions="Start" CornerRadius="20" Padding="20" Margin="10" BackgroundColor="WhiteSmoke">
+                <panCake:PancakeView Grid.Row="1" VerticalOptions="Start" 
+                                     CornerRadius="20" Padding="20" Margin="10"
+                                     BackgroundColor="WhiteSmoke">
                     <StackLayout>
                         <Grid>
                             <Grid.ColumnDefinitions>
