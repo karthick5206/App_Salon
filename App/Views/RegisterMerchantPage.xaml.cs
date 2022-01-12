@@ -13,20 +13,44 @@ namespace App.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterMerchantPage : ContentPage
     {
+        private RegisterMerchantViewModel RegisterMerchantViewModel { get; }
         public RegisterMerchantPage()
         {
             InitializeComponent();
-            BindingContext = new RegisterMerchantViewModel();
+            BindingContext = RegisterMerchantViewModel = new RegisterMerchantViewModel();
         }
 
         private async void MaterialTextField_Focused(object sender, FocusEventArgs e)
         {
-            if (Shell.Current != null)
+            RegisterMerchantViewModel.IsBusy = true;
+            await RegisterMerchantViewModel.Validate(RegisterMerchantViewModel.MobileNumber);
+            RegisterMerchantViewModel.IsBusy = false;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (this.BindingContext != null)
             {
-                App.Current.MainPage = new SelectionPopupPage(Shell.Current);
+                if (((RegisterMerchantViewModel)this.BindingContext).OnAppearingCommand.CanExecute(null))
+                {
+                    ((RegisterMerchantViewModel)this.BindingContext).OnAppearingCommand.Execute(null);
+                }
             }
-            //await Shell.Current.GoToAsync("//SelectionPopupPage");
-            
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            if (this.BindingContext != null)
+            {
+                if (((RegisterMerchantViewModel)this.BindingContext).OnDisappearingCommand.CanExecute(null))
+                {
+                    ((RegisterMerchantViewModel)this.BindingContext).OnDisappearingCommand.Execute(null);
+                }
+            }
         }
     }
 }

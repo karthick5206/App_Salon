@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:rg="http://rotorgames.com"
             BackgroundColor="Gray"
@@ -18,9 +17,11 @@
                        Text="Validate Otp"
                        FontSize="16" />
 
-                <material:MaterialTextField LeadingIcon="outline_smartphone_black_24" WidthRequest="120" Placeholder="Enter Otp" UnderlineColor="Black" Margin="5"/>
+                <material:MaterialTextField x:Name="txtOtp" LeadingIcon="outline_smartphone_black_24" WidthRequest="120" Placeholder="Enter Otp" InputType="Numeric" UnderlineColor="Black" Margin="5"/>
                 <material:MaterialButton Elevation="4" WidthRequest="120" Text="Validate" Clicked="MaterialButton_Clicked" CharacterSpacing="0" TextColor="White" BackgroundColor="Black" Margin="5"/>
-
+                <material:MaterialChip x:Name="chipMessage"
+                                                       TextColor="Red"
+                                                       Margin="5"/>
             </StackLayout>
         </panCake:PancakeView>
     </ContentPage.Content>
