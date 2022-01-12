@@ -6,21 +6,30 @@
              xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False">
+    
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding BackCommand}"
+                            IconOverride="outline_arrow_back_black_24" />
+    </Shell.BackButtonBehavior>
+    
     <ContentPage.Content>
         <panCake:PancakeView BackgroundColor="Gainsboro" CornerRadius="2">
             <ScrollView>
                 <panCake:PancakeView Grid.Row="1" VerticalOptions="Start" CornerRadius="20" Padding="20" Margin="10" BackgroundColor="WhiteSmoke">
                     <StackLayout>
-                        <Grid>
+                        <Grid HorizontalOptions="FillAndExpand">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="8*"/>
                             </Grid.ColumnDefinitions>
                             <material:MaterialButton ImageSource="outline_arrow_back_black_24"
                                                      BackgroundColor="Black" CharacterSpacing="0" AllCaps="False"
                                                      ButtonType="Text" 
                                                      Grid.Column="0"  Command="{Binding BackCommand}"/>
-                            <material:MaterialLabel TextType="Text" Text="REGISTER AS USER" TextColor="Black" Grid.Column="0" Grid.ColumnSpan="2" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                            <material:MaterialLabel TextType="Text"
+                                                    Text="REGISTER AS USER"
+                                                    TextColor="Black" 
+                                                    Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
                         </Grid>
                         <material:MaterialTextField AlwaysShowUnderline="True"  UnderlineColor="Black" Margin="5"
                                             LeadingIcon="outline_person_black_24"

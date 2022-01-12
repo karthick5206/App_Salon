@@ -13,8 +13,8 @@
                     <StackLayout>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="8*"/>
                             </Grid.ColumnDefinitions>
                             <material:MaterialButton ImageSource="outline_arrow_back_black_24"
                                                      BackgroundColor="Black" CharacterSpacing="0" AllCaps="False"
@@ -25,6 +25,7 @@
 
                         <material:MaterialTextField LeadingIcon="outline_vpn_key_black_24"
                                                     AlwaysShowUnderline="True"
+                                                    x:Name="txtPin"
                                                     UnderlineColor="Black" Text="{Binding Pin}"   
                                             Placeholder="PIN" InputType="Numeric" MaxLength="4" 
                                         IsAutoCapitalizationEnabled="True" />
@@ -37,6 +38,10 @@
                         
                         <material:MaterialButton BackgroundColor="Black" Elevation="4" Text="Register" CharacterSpacing="0" Margin="5"
                                                  Command="{Binding RegisterCommand}"/>
+
+                        <material:MaterialChip x:Name="chipMessage" Text="{Binding RegisterMessage}"
+                                                       TextColor="Red"
+                                                       Margin="5"/>
                     </StackLayout>
                 </panCake:PancakeView>
             </ScrollView>

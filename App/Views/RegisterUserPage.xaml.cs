@@ -17,6 +17,6 @@ namespace App.Views
         {
             InitializeComponent();
             BindingContext = new RegisterMerchantViewModel();
-        }
+        }      
     }
 }
