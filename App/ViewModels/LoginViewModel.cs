@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using Acr.UserDialogs;
 
 namespace App.ViewModels
 {
@@ -27,27 +28,50 @@ namespace App.ViewModels
             //PropertyChanged += (_,__) => LoginCommand.CanExecute(null);
         }
 
-        private bool Valid(object parameter) => 
-            !string.IsNullOrWhiteSpace(MobileNumber) 
+        private bool Valid(object parameter) =>
+            !string.IsNullOrWhiteSpace(MobileNumber)
             && !string.IsNullOrWhiteSpace(Password);
 
         private async void OnLoginClicked(object obj)
         {
-            var shellViewModel = DependencyService.Resolve<ShellViewModel>();
-            shellViewModel.User = new User();
-            shellViewModel.User.phoneNumber = MobileNumber;
-            shellViewModel.User.pinNumber = Password;
-            var isValid = await RegisterUser.Login(shellViewModel.User);
-            if (isValid.IsSuccessStatusCode)
+
+            if (string.IsNullOrWhiteSpace(MobileNumber) && string.IsNullOrWhiteSpace(Password))
             {
-                //CrossToastPopUp.Current.ShowToastSuccess("Login Success", Plugin.Toast.Abstractions.ToastLength.Short);
-                await Shell.Current.GoToAsync("//AboutPage");
+                UserDialogs.Instance.Toast(new ToastConfig("Please enter mobile number and pin to proceed login!")
+                {
+                    MessageTextColor = System.Drawing.Color.Orange,
+                    Position = ToastPosition.Bottom
+                });
             }
             else
             {
-                //CrossToastPopUp.Current.ShowToastError("Login Failed", Plugin.Toast.Abstractions.ToastLength.Short);
-                LoginMessage = "Login Failed";
+                var shellViewModel = DependencyService.Resolve<ShellViewModel>();
+                shellViewModel.User = new User();
+                shellViewModel.User.phoneNumber = MobileNumber;
+                shellViewModel.User.pinNumber = Password;
+                var isValid = await RegisterUser.Login(shellViewModel.User);
+                if (isValid.IsSuccessStatusCode)
+                {
+                    UserDialogs.Instance.Toast(new ToastConfig("Login Success.")
+                    {
+                        MessageTextColor = System.Drawing.Color.Green,
+                        Position = ToastPosition.Bottom
+                    });
+                    //CrossToastPopUp.Current.ShowToastSuccess("Login Success", Plugin.Toast.Abstractions.ToastLength.Short);
+                    await Shell.Current.GoToAsync("//AboutPage");
+                }
+                else
+                {
+                    UserDialogs.Instance.Toast(new ToastConfig("Login Failed!")
+                    {
+                        MessageTextColor = System.Drawing.Color.Red,
+                        Position = ToastPosition.Bottom
+                    });
+                    //CrossToastPopUp.Current.ShowToastError("Login Failed", Plugin.Toast.Abstractions.ToastLength.Short);
+                    LoginMessage = "Login Failed";
+                }
             }
+
         }
 
         private async void OnRegisterClicked(object obj)

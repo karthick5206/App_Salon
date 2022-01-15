@@ -1,4 +1,5 @@
-﻿using System;
+using Syncfusion.XForms.iOS.MaskedEdit;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +23,8 @@ namespace App.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
+global::Xamarin.Forms.Forms.Init();
+SfMaskedEditRenderer.Init();
             LoadApplication(new App());
             XF.Material.iOS.Material.Init();
             Rg.Plugins.Popup.Popup.Init();
