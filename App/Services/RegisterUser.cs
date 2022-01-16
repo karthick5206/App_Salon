@@ -20,18 +20,25 @@ namespace App.Services
 
         public async Task<ApiResponse<User>> RegisterAsUser(User user)
         {
-            var apiResponse = new ApiResponse<User>();
-
-            var response = await httpClient.PostAsync(
-                $"{url}/mm/validatemobilenumber?phoneNumber={user.phoneNumber}",
-                new StringContent(JsonConvert.SerializeObject(user)));
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                apiResponse.IsSuccessStatusCode = true;
-                apiResponse.Message = "Success";
-                apiResponse.Data = JsonConvert.DeserializeObject<User>((await response.Content.ReadAsStringAsync()));
-                return apiResponse;
+                var apiResponse = new ApiResponse<User>();
+
+                var response = await httpClient.PostAsync(
+                    $"{url}/mm/validatemobilenumber?phoneNumber={user.phoneNumber}",
+                    new StringContent(JsonConvert.SerializeObject(user)));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResponse.IsSuccessStatusCode = true;
+                    apiResponse.Message = "Success";
+                    apiResponse.Data = JsonConvert.DeserializeObject<User>((await response.Content.ReadAsStringAsync()));
+                    return apiResponse;
+                }
+            }
+            catch
+            {
+
             }
 
             return new ApiResponse<User>
@@ -43,19 +50,23 @@ namespace App.Services
 
         public async Task<ApiResponse<bool>> ValidateMobileNumber(string mobileNumber)
         {
-            var apiResponse = new ApiResponse<bool>();
-
-            var response = await httpClient.PostAsync(
-                $"{url}/mm/validatemobilenumber?phoneNumber={mobileNumber}",
-                new StringContent(string.Empty));
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                apiResponse.IsSuccessStatusCode = true;
-                apiResponse.Message = "Success";
-                apiResponse.Data = true;
-                return apiResponse;
+                var apiResponse = new ApiResponse<bool>();
+
+                var response = await httpClient.PostAsync(
+                    $"{url}/mm/validatemobilenumber?phoneNumber={mobileNumber}",
+                    new StringContent(string.Empty));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResponse.IsSuccessStatusCode = true;
+                    apiResponse.Message = "Success";
+                    apiResponse.Data = true;
+                    return apiResponse;
+                }
             }
+            catch { }
 
             return new ApiResponse<bool>
             {
@@ -66,18 +77,22 @@ namespace App.Services
 
         public async Task<ApiResponse<bool>> OtpService()
         {
-            var apiResponse = new ApiResponse<bool>();
-
-            var response = await httpClient.GetAsync(
-                $"{url}/cc/otpservice");
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                apiResponse.IsSuccessStatusCode = true;
-                apiResponse.Message = "Success";
-                apiResponse.Data = true;
-                return apiResponse;
+                var apiResponse = new ApiResponse<bool>();
+
+                var response = await httpClient.GetAsync(
+                    $"{url}/cc/otpservice");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResponse.IsSuccessStatusCode = true;
+                    apiResponse.Message = "Success";
+                    apiResponse.Data = true;
+                    return apiResponse;
+                }
             }
+            catch { }
 
             return new ApiResponse<bool>
             {
@@ -90,17 +105,21 @@ namespace App.Services
         {
             var apiResponse = new ApiResponse<bool>();
 
-            var response = await httpClient.PostAsync(
-                $"{url}/mm/matchingotp?phoneNumber={mobileNumber}&otp={otp}",
-                new StringContent(string.Empty));
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                apiResponse.IsSuccessStatusCode = true;
-                apiResponse.Message = "Success";
-                apiResponse.Data = true;
-                return apiResponse;
+                var response = await httpClient.PostAsync(
+                        $"{url}/mm/matchingotp?phoneNumber={mobileNumber}&otp={otp}",
+                        new StringContent(string.Empty));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResponse.IsSuccessStatusCode = true;
+                    apiResponse.Message = "Success";
+                    apiResponse.Data = true;
+                    return apiResponse;
+                }
             }
+            catch { }
 
             return new ApiResponse<bool>
             {
@@ -111,21 +130,25 @@ namespace App.Services
 
         public async Task<ApiResponse<User>> SaveFirstTimeMaster(User user)
         {
-            var apiResponse = new ApiResponse<User>();
-
-            var response = await httpClient.PostAsync(
-                $"{url}/mm/savefirsttimemaster?phoneNumber={user.phoneNumber}" +
-                $"&mailId={user.mailId}&gender={user.gender}" +
-                $"&pinNumber={user.pinNumber}&merchantType={user.merchantType}&deviceId={user.deviceId}",
-                new StringContent(string.Empty));
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                apiResponse.IsSuccessStatusCode = true;
-                apiResponse.Message = "Success";
-                //apiResponse.Data = JsonConvert.DeserializeObject<User>((await response.Content.ReadAsStringAsync())); ;
-                return apiResponse;
+                var apiResponse = new ApiResponse<User>();
+
+                var response = await httpClient.PostAsync(
+                    $"{url}/mm/savefirsttimemaster?phoneNumber={user.phoneNumber}" +
+                    $"&mailId={user.mailId}&gender={user.gender}" +
+                    $"&pinNumber={user.pinNumber}&merchantType={user.merchantType}&deviceId={user.deviceId}",
+                    new StringContent(string.Empty));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResponse.IsSuccessStatusCode = true;
+                    apiResponse.Message = "Success";
+                    //apiResponse.Data = JsonConvert.DeserializeObject<User>((await response.Content.ReadAsStringAsync())); ;
+                    return apiResponse;
+                }
             }
+            catch { }
 
             return new ApiResponse<User>
             {
@@ -136,20 +159,24 @@ namespace App.Services
 
         public async Task<ApiResponse<User>> Login(User user)
         {
-            var apiResponse = new ApiResponse<User>();
-
-            var response = await httpClient.PostAsync(
-                $"{url}mm/fetchdetails?phoneNumber={user.phoneNumber}" +
-                $"&pinNumber={user.pinNumber}",
-                new StringContent(string.Empty));
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                apiResponse.IsSuccessStatusCode = true;
-                apiResponse.Message = "Success";
-                //apiResponse.Data = JsonConvert.DeserializeObject<User>((await response.Content.ReadAsStringAsync())); ;
-                return apiResponse;
+                var apiResponse = new ApiResponse<User>();
+
+                var response = await httpClient.PostAsync(
+                    $"{url}mm/fetchdetails?phoneNumber={user.phoneNumber}" +
+                    $"&pinNumber={user.pinNumber}",
+                    new StringContent(string.Empty));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    apiResponse.IsSuccessStatusCode = true;
+                    apiResponse.Message = "Success";
+                    //apiResponse.Data = JsonConvert.DeserializeObject<User>((await response.Content.ReadAsStringAsync())); ;
+                    return apiResponse;
+                }
             }
+            catch { }
 
             return new ApiResponse<User>
             {

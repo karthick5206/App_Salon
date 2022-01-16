@@ -76,7 +76,7 @@ namespace App.ViewModels
 
         private async void OnRegisterClicked(object obj)
         {
-            await Shell.Current.GoToAsync("//RegisterMerchantPage");
+            await Shell.Current.GoToAsync("//SelectionPage");
         }
     }
 }

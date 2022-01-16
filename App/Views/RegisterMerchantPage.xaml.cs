@@ -18,6 +18,7 @@ namespace App.Views
         {
             InitializeComponent();
             BindingContext = RegisterMerchantViewModel = new RegisterMerchantViewModel();
+            RegisterMerchantViewModel.IsMerchant = true;
         }
 
         private async void MaterialTextField_Focused(object sender, FocusEventArgs e)

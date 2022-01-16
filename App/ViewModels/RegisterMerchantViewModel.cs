@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using Acr.UserDialogs;
+using App.Models;
 using App.Services;
 using App.Views;
 using System;
@@ -7,7 +8,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
+using Plugin.DeviceInfo;
 
 namespace App.ViewModels
 {
@@ -57,6 +60,19 @@ namespace App.ViewModels
         public RegisterUser RegisterUser { get; set; }
         public Color ValidMobileNumberTextColor { get; set; } = Color.Green;
 
+        public double Opacity { get; set; } = 1.0;
+
+        public OtpValidationViewModel OtpValidationViewModel { get; set; }
+
+        public bool EnableSignup => OtpValidationViewModel?.IsValidated ?? false;
+
+        public bool EnableValidateOtp => !string.IsNullOrWhiteSpace(MobileNumber);
+
+        public Color VerifyButtonColor => EnableValidateOtp ? Color.FromHex("#42cf60")
+            : Color.Gray;
+
+        public bool IsMerchant { get; set; }
+
         public RegisterMerchantViewModel()
         {
             MerchantTypes = new List<string>() { "Shop Services", "Home Services" };
@@ -69,16 +85,22 @@ namespace App.ViewModels
             OnAppearingCommand = new Command(() => OnAppearing());
             OnDisappearingCommand = new Command(() => OnDisappearing());
             RegisterUser = DependencyService.Resolve<RegisterUser>();
+            PopupNavigation.Instance.Popped += (_, __) =>
+            {
+                Opacity = 1.0;
+                OnPropertyChanged(nameof(EnableSignup));
+            };
             //PropertyChanged += (_, __) => OtpCommand.CanExecute(null);
         }
 
-        private bool Valid(object parameter) =>
+        private bool ValidateMerchant() =>
             !string.IsNullOrWhiteSpace(MobileNumber)
             && !string.IsNullOrWhiteSpace(SelectedMerchantType)
             && !string.IsNullOrWhiteSpace(SelectedGender)
             && !string.IsNullOrWhiteSpace(Email)
             && !string.IsNullOrWhiteSpace(Name)
-            && !string.IsNullOrWhiteSpace(Password);
+            && !string.IsNullOrWhiteSpace(Password)
+            && EnableSignup;
 
         private void OnAppearing()
         {
@@ -113,26 +135,97 @@ namespace App.ViewModels
             }
         }
 
+        private bool ValidateUser() =>
+            !string.IsNullOrWhiteSpace(Name)
+                && !string.IsNullOrWhiteSpace(MobileNumber)
+                && !string.IsNullOrWhiteSpace(Password)
+                && EnableSignup;
+
         private async void OnRegisterClicked(object parameter)
         {
-            await Shell.Current.GoToAsync("//LoginPage");
+            UpdateUserInfo();
+
+            if (IsMerchant ? ValidateMerchant() : ValidateUser())
+            {
+                UserDialogs.Instance.ShowLoading();
+
+                var shellViewModel = DependencyService.Resolve<ShellViewModel>();
+                shellViewModel.User.pinNumber = Password;
+                shellViewModel.User.deviceId = CrossDeviceInfo.Current.Id;
+
+                var response = await RegisterUser.SaveFirstTimeMaster(shellViewModel.User);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    UserDialogs.Instance.HideLoading();
+
+                    UserDialogs.Instance.Toast(new ToastConfig("Registration successful.")
+                    {
+                        MessageTextColor = System.Drawing.Color.Green,
+                        Position = ToastPosition.Bottom
+                    });
+                    await Shell.Current.GoToAsync("//LoginPage");
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+
+                    UserDialogs.Instance.Toast(new ToastConfig("Registration Failed.")
+                    {
+                        MessageTextColor = System.Drawing.Color.Red,
+                        Position = ToastPosition.Bottom
+                    });
+                }
+            }
+            else
+            {
+                UserDialogs.Instance.Toast(new ToastConfig(EnableSignup ? "Please fill all the details."
+                    : "Verify the mobile number.")
+                {
+                    MessageTextColor = System.Drawing.Color.Red,
+                    Position = ToastPosition.Bottom
+                });
+            }
         }
 
         private async void OnOtpClicked(object parameter)
         {
             UpdateUserInfo();
 
+            UserDialogs.Instance.ShowLoading();
+
+            OtpValidationViewModel = new OtpValidationViewModel();
+
             var isValid = await RegisterUser.ValidateMobileNumber(MobileNumber);
 
             if (isValid.IsSuccessStatusCode)
-                App.Current.MainPage = new OtpValidationPopupPage(Shell.Current);
+            {
+                UserDialogs.Instance.HideLoading();
+                Opacity = 0.25;
+                await PopupNavigation.Instance.PushAsync(new OtpValidationPopupPage(OtpValidationViewModel));
+            }
             else
-                await Shell.Current.DisplayAlert("Failed", $"Unable to generate OTP {MobileNumber}", "Ok");
+            {
+                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.Toast(new ToastConfig("Unable to generate OTP,Please try again later.")
+                {
+                    MessageTextColor = System.Drawing.Color.Red,
+                    Position = ToastPosition.Bottom
+                });
+            }
         }
 
         private async void OnBackClicked()
         {
-            await Shell.Current.GoToAsync("//LoginPage");
+            Email = String.Empty;
+            SelectedMerchantType = String.Empty;
+            SelectedGender = String.Empty;
+            MobileNumber = String.Empty;
+            Name = String.Empty;
+            Password = String.Empty;
+            if (OtpValidationViewModel != null)
+                OtpValidationViewModel.IsValidated = false;
+            await Shell.Current.GoToAsync("//SelectionPage");
         }
 
         private void UpdateUserInfo()
@@ -143,6 +236,8 @@ namespace App.ViewModels
             shellViewModel.User.merchantType = SelectedMerchantType;
             shellViewModel.User.gender = SelectedGender;
             shellViewModel.User.phoneNumber = MobileNumber;
+            shellViewModel.User.name = Name;
+            shellViewModel.User.pinNumber = Password;
             shellViewModel.User.deviceId = "12345";
         }
     }

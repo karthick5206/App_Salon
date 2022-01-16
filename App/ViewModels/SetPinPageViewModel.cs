@@ -51,22 +51,7 @@ namespace App.ViewModels
 
         private async void OnRegisterClicked(object parameter)
         {
-            var shellViewModel = DependencyService.Resolve<ShellViewModel>();
-            shellViewModel.User.pinNumber = Pin;
-            shellViewModel.User.deviceId = CrossDeviceInfo.Current.Id;
-
-            var response = await RegisterUser.SaveFirstTimeMaster(shellViewModel.User);
-
-            if (response.IsSuccessStatusCode)
-            {
-                //CrossToastPopUp.Current.ShowToastSuccess("Registration Success", Plugin.Toast.Abstractions.ToastLength.Short);
-                await Shell.Current.GoToAsync("//LoginPage");
-            }
-            else
-            {
-                //CrossToastPopUp.Current.ShowToastError("Registration Failed", Plugin.Toast.Abstractions.ToastLength.Short);
-                RegisterMessage = "Registration Failed";
-            }
+            
 
         }
 
