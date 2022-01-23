@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using App.ViewModels;
+using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,23 +12,24 @@ using Xamarin.Forms.Xaml;
 namespace App.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class SelectionPopupPage : PopupPage
+    public partial class SelectionPopupPage : ContentPage    
     {
-        public Shell Shell { get; set; }
-        public SelectionPopupPage(Shell shell)
+       
+        public SelectionPopupPage()
         {
             InitializeComponent();
-            this.Shell = shell;
+
+            this.BindingContext = new SelectionPopupViewModel();
         }
 
-        private void OnClose(object sender, EventArgs e)
+        private void Grid_Focused(object sender, FocusEventArgs e)
         {
-            Device.BeginInvokeOnMainThread(() => App.Current.MainPage = Shell);
+            (sender as Grid).BackgroundColor = Color.Green;
         }
 
-        private void PopupPage_BackgroundClicked(object sender, EventArgs e)
+        private void Grid_Unfocused(object sender, FocusEventArgs e)
         {
-            Device.BeginInvokeOnMainThread(() => App.Current.MainPage = Shell);
+            (sender as Grid).BackgroundColor = Color.Black;
         }
     }
 }

@@ -1,26 +1,120 @@
-﻿<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:rg="http://rotorgames.com"
-            BackgroundColor="Gray"
-              BackgroundClicked="PopupPage_BackgroundClicked"
-              HasSystemPadding="False"
-              Padding="10"
-              CloseWhenBackgroundIsClicked="True"
-               xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             Padding="10"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False"
+             Shell.BackgroundColor="{StaticResource BackgroundColor}"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:fonts="clr-namespace:FontAwesome"
+             xmlns:ui="clr-namespace:Vapolia.Lib.Ui;assembly=XamarinFormsGesture"
              xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="App.Views.SelectionPopupPage">
+
+
+   
+
     <ContentPage.Content>
-        <panCake:PancakeView CornerRadius="10" BackgroundColor="WhiteSmoke" VerticalOptions="Center"
-                 HorizontalOptions="FillAndExpand">
-            <StackLayout Margin="20,50">
-                <Label HorizontalOptions="Center" TextColor="Black"
-                       Text="Choose Register Option"
-                       FontSize="16" />
-                <StackLayout Orientation="Horizontal">
-                    <material:MaterialButton Elevation="4" WidthRequest="120" Text="user" CharacterSpacing="0" TextColor="White" BackgroundColor="Black" Margin="5"/>
-                    <material:MaterialButton Elevation="4" WidthRequest="120" Text="merchant" CharacterSpacing="0" TextColor="White" BackgroundColor="Black" Margin="5"/>
-                </StackLayout>
+
+        <Grid Margin="10">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+
+            <StackLayout Orientation="Horizontal" 
+                         InputTransparent="False"
+                         ui:Gesture.TapCommand="{Binding BackCommand}">
+                <Label TextColor="White" Margin="0,20" FontSize="Large"
+                   Grid.Row="0" IsEnabled="True"
+                   Text="{x:Static fonts:FontAwesomeIcons.ChevronLeft}"
+                   FontFamily="{StaticResource FontAwesomeSolid}"/>
+                <Label Text="Back" Margin="2,20" TextColor="{StaticResource EditTextColor}"/>
             </StackLayout>
-        </panCake:PancakeView>
+        
+            
+            <Grid Margin="20,50" Grid.Row="1" VerticalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                   
+                </Grid.RowDefinitions>
+                
+                <Label HorizontalOptions="Center"
+                       FontSize="Medium" Grid.Row="0"
+                       FontAttributes="Bold" TextColor="{StaticResource EditTextColor}"
+                       Text="Select a Category"
+                       />
+
+                <Grid HorizontalOptions="Fill" Grid.Row="1"
+                      Margin="2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Frame ui:Gesture.TapCommand="{Binding SelectionChangedCommand}"
+                            ui:Gesture.CommandParameter="//RegisterPage"
+                                         CornerRadius="8" x:Name="Root" InputTransparent="False"
+                                         BackgroundColor="{Binding UserBackgroundColor}"
+                                         Margin="10" Grid.Column="0">
+                       
+                        <Grid Margin="2" InputTransparent="False">
+                           
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Margin="5,0" Grid.Column="0" VerticalOptions="StartAndExpand" TextColor="{StaticResource EditTextColor}"
+                                   Text="User" Grid.Row="0" HorizontalOptions="Start"/>
+                            <Label Margin="5" TextColor="{StaticResource EditTextColor}"
+                                   FontSize="Large" VerticalOptions="End"
+                                   Grid.Row="1" HorizontalOptions="End"
+                                   FontFamily="{StaticResource FontAwesomeSolid}"
+                                   Text="{x:Static fonts:FontAwesomeIcons.User}">
+                               
+                            </Label>
+                        </Grid>
+                    </Frame>
+
+
+                    <Frame ui:Gesture.TapCommand="{Binding SelectionChangedCommand}"
+                                         ui:Gesture.CommandParameter="//RegisterMerchantPage"
+                                         InputTransparent="False" CornerRadius="8"
+                                         BackgroundColor="{Binding MerchantBackgroundColor}"
+                                         Margin="10" Grid.Column="1">
+                       
+                        <Grid Margin="2" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Label Margin="5,0"
+                                   TextColor="{StaticResource EditTextColor}" Text="Merchant"
+                                   Grid.Row="0" VerticalOptions="StartAndExpand" HorizontalOptions="Start"/>
+                            <Label Margin="5" TextColor="{StaticResource EditTextColor}"
+                                   FontSize="Large" VerticalOptions="End"
+                                   Grid.Row="1" HorizontalOptions="End"
+                                   FontFamily="{StaticResource FontAwesomeSolid}"
+                                   Text="{x:Static fonts:FontAwesomeIcons.University}"/>
+
+                        </Grid>
+
+                    </Frame>
+
+                </Grid>
+            </Grid>
+
+            <Button CornerRadius="10" Grid.Row="2" VerticalOptions="End" TextTransform="None"
+                            BackgroundColor="{StaticResource ButtonBackgroundColor}" 
+                            TextColor="{StaticResource BackgroundColor}" 
+                            Command="{Binding NextCommand}"
+                            Text="Next" Margin="10"/>
+        </Grid>
+
+
     </ContentPage.Content>
-</rg:PopupPage>
+</ContentPage>

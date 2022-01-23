@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using System.Threading;
+using Acr.UserDialogs;
 
 namespace App.ViewModels
 {
@@ -33,6 +34,8 @@ namespace App.ViewModels
 
         public RegisterUser RegisterUser { get; set; }
 
+        public OtpValidationViewModel OtpValidationViewModel { get; set; }
+
         public RegisterUserViewModel()
         {
             MerchantTypes = new List<string>() { "Shop Services", "Home Services" };
@@ -52,12 +55,20 @@ namespace App.ViewModels
         {
             UpdateUserInfo();
 
+            OtpValidationViewModel = new OtpValidationViewModel();
+
             var isValid = await RegisterUser.ValidateMobileNumber(MobileNumber);
 
             if (isValid.IsSuccessStatusCode)
-                App.Current.MainPage = new OtpValidationPopupPage(Shell.Current);
+                App.Current.MainPage = new OtpValidationPopupPage(OtpValidationViewModel);
             else
-                await Shell.Current.DisplayAlert("Failed", $"Unable to generate OTP {MobileNumber}", "Ok");
+            {
+                UserDialogs.Instance.Toast(new ToastConfig("Unable to generate OTP,Please try again later.")
+                {
+                    MessageTextColor = System.Drawing.Color.Red,
+                    Position = ToastPosition.Bottom
+                });
+            }
         }
 
         private void UpdateUserInfo()

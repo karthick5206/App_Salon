@@ -17,6 +17,7 @@ namespace App
             DependencyService.Register<RegisterUser>();
             DependencyService.RegisterSingleton(new ShellViewModel());
             XF.Material.Forms.Material.Init(this);
+                          
             MainPage = new AppShell();
         }
 

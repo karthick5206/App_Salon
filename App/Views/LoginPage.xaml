@@ -7,7 +7,8 @@
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"   
              mc:Ignorable="d" BackgroundColor="{StaticResource BackgroundColor}"
-             x:Class="App.Views.LoginPage"
+             xmlns:ui="clr-namespace:Vapolia.Lib.Ui;assembly=XamarinFormsGesture"
+             x:Class="App.Views.LoginPage" Visual="Material"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Name="loginView"
              Shell.TabBarIsVisible="False"
@@ -15,7 +16,7 @@
 
     <ContentPage.Content>
 
-        <ScrollView>
+        <ScrollView Margin="20,10">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -36,7 +37,7 @@
 
                 <StackLayout Orientation="Vertical" Grid.Row="2" Margin="15">
 
-                    <panCake:PancakeView CornerRadius="10" Padding="10"
+                    <panCake:PancakeView CornerRadius="10" Padding="10,5"
                                          BackgroundColor="{StaticResource BackgroundColor}"
                                          Margin="5,10">
 
@@ -47,7 +48,7 @@
                         <Entry  BackgroundColor="Transparent"
                                 TextColor="{StaticResource EditTextColor}"
                                 Placeholder="Mobile Number" Keyboard="Numeric"
-                                Text="{Binding MobileNumber}" 
+                                Text="{Binding MobileNumber}" Visual="Material"
                                 PlaceholderColor="{StaticResource EditTextColor}">
                             <Entry.Behaviors>
                                 <xct:MaskedBehavior 
@@ -58,14 +59,15 @@
 
                     </panCake:PancakeView>
 
-                    <panCake:PancakeView CornerRadius="10" BackgroundColor="#080808"  Margin="5,10">
+                    <panCake:PancakeView CornerRadius="10"  Padding="10,5"
+                                         BackgroundColor="#080808"  Margin="5,10">
 
                         <panCake:PancakeView.Border>
                             <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
                         </panCake:PancakeView.Border>
 
-                        <Entry Margin="10" BackgroundColor="Transparent"
-                               IsPassword="True"
+                        <Entry  BackgroundColor="Transparent"
+                               IsPassword="True" Visual="Material"
                                 TextColor="{StaticResource EditTextColor}"
                                 Placeholder="PIN" Keyboard="Numeric"
                                 Text="{Binding Password}" 
@@ -79,7 +81,7 @@
 
                     </panCake:PancakeView>
 
-                    <Label TextDecorations="Underline" 
+                    <Label TextDecorations="Underline" ui:Gesture.TapCommand="{Binding ForgotPasswordCommand}"
                            TextColor="White" 
                            Text="Forgot Password?" 
                            FontSize="Small" Margin="15,5"/>
@@ -103,17 +105,19 @@
                            Text="Don't have an account?"
                            VerticalOptions="CenterAndExpand"/>
 
-                    <Button TextColor="#42cf60"
+                    <StackLayout InputTransparent="False"
+                         ui:Gesture.TapCommand="{Binding RegisterCommand}">
+                        <Label TextColor="#42cf60"
                            FontSize="Small"
-                          TextTransform="None"
+                           TextTransform="None"
                            BackgroundColor="Transparent"
                            HorizontalOptions="Start"
                            CharacterSpacing="0" 
-                           Command="{Binding RegisterCommand}"
                            Text="Signup">
-                        
-                    </Button>
+                        </Label>
 
+                    </StackLayout>
+                   
                     <Label HorizontalOptions="Start"
                            Margin="-2,0"
                            FontSize="Small"

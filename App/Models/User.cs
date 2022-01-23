@@ -10,8 +10,8 @@ namespace App.Models
         public string mailId { get; set; }
         public string gender { get; set; }
         public string pinNumber { get; set; }
-
+        public string name { get; set; }
         public string merchantType { get; set; }
         public string deviceId { get; set; }
-    }
+    }   
 }

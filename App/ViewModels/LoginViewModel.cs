@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using Acr.UserDialogs;
+using Plugin.DeviceInfo;
 
 namespace App.ViewModels
 {
@@ -14,6 +15,7 @@ namespace App.ViewModels
     {
         public Command LoginCommand { get; }
         public Command RegisterCommand { get; }
+        public Command ForgotPasswordCommand { get; }
         public string MobileNumber { get; set; }
         public string Password { get; set; }
         public bool RememberMe { get; set; }
@@ -24,6 +26,7 @@ namespace App.ViewModels
         {
             LoginCommand = new Command(OnLoginClicked);
             RegisterCommand = new Command(OnRegisterClicked);
+            ForgotPasswordCommand = new Command(OnForgotPasswordClicked);
             RegisterUser = DependencyService.Resolve<RegisterUser>();
             //PropertyChanged += (_,__) => LoginCommand.CanExecute(null);
         }
@@ -34,9 +37,10 @@ namespace App.ViewModels
 
         private async void OnLoginClicked(object obj)
         {
-
+            UserDialogs.Instance.ShowLoading();
             if (string.IsNullOrWhiteSpace(MobileNumber) && string.IsNullOrWhiteSpace(Password))
             {
+                UserDialogs.Instance.HideLoading();
                 UserDialogs.Instance.Toast(new ToastConfig("Please enter mobile number and pin to proceed login!")
                 {
                     MessageTextColor = System.Drawing.Color.Orange,
@@ -49,9 +53,11 @@ namespace App.ViewModels
                 shellViewModel.User = new User();
                 shellViewModel.User.phoneNumber = MobileNumber;
                 shellViewModel.User.pinNumber = Password;
+                shellViewModel.User.deviceId = CrossDeviceInfo.Current.Id;
                 var isValid = await RegisterUser.Login(shellViewModel.User);
                 if (isValid.IsSuccessStatusCode)
                 {
+                    UserDialogs.Instance.HideLoading();
                     UserDialogs.Instance.Toast(new ToastConfig("Login Success.")
                     {
                         MessageTextColor = System.Drawing.Color.Green,
@@ -62,6 +68,7 @@ namespace App.ViewModels
                 }
                 else
                 {
+                    UserDialogs.Instance.HideLoading();
                     UserDialogs.Instance.Toast(new ToastConfig("Login Failed!")
                     {
                         MessageTextColor = System.Drawing.Color.Red,
@@ -76,7 +83,12 @@ namespace App.ViewModels
 
         private async void OnRegisterClicked(object obj)
         {
-            await Shell.Current.GoToAsync("//RegisterMerchantPage");
+            await Shell.Current.GoToAsync("//SelectionPage");
+        }
+
+        private async void OnForgotPasswordClicked(object obj)
+        {
+            await Shell.Current.GoToAsync("//ForgotPasswordPage");
         }
     }
 }

@@ -3,73 +3,139 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App.Views.RegisterUserPage"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:ui="clr-namespace:Vapolia.Lib.Ui;assembly=XamarinFormsGesture"
+              xmlns:fonts="clr-namespace:FontAwesome" Opacity="{Binding Opacity}"
              xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Shell.TabBarIsVisible="False"
-             Shell.NavBarIsVisible="False">
-    
-    <Shell.BackButtonBehavior>
-        <BackButtonBehavior Command="{Binding BackCommand}"
-                            IconOverride="outline_arrow_back_black_24" />
-    </Shell.BackButtonBehavior>
+             Shell.NavBarIsVisible="False">   
     
     <ContentPage.Content>
-        <panCake:PancakeView BackgroundColor="Gainsboro" CornerRadius="2">
-            <ScrollView>
-                <panCake:PancakeView Grid.Row="1" VerticalOptions="Start" CornerRadius="20" Padding="20" Margin="10" BackgroundColor="WhiteSmoke">
-                    <StackLayout>
-                        <Grid HorizontalOptions="FillAndExpand">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="8*"/>
-                            </Grid.ColumnDefinitions>
-                            <material:MaterialButton ImageSource="outline_arrow_back_black_24"
-                                                     BackgroundColor="Black" CharacterSpacing="0" AllCaps="False"
-                                                     ButtonType="Text" 
-                                                     Grid.Column="0"  Command="{Binding BackCommand}"/>
-                            <material:MaterialLabel TextType="Text"
-                                                    Text="REGISTER AS USER"
-                                                    TextColor="Black" 
-                                                    Grid.Column="1" HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
-                        </Grid>
-                        <material:MaterialTextField AlwaysShowUnderline="True"  UnderlineColor="Black" Margin="5"
-                                            LeadingIcon="outline_person_black_24"
-                                            Text="{Binding Name}" Placeholder="Name"
-                                        IsAutoCapitalizationEnabled="True" InputType="Text"/>
-                        <panCake:PancakeView CornerRadius="2" BackgroundColor="LightGray"  Margin="5">
-                            <Grid BackgroundColor="Transparent">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="1"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <Label Text="Gender" TextColor="Gray" Margin="0,3" VerticalOptions="Start" Grid.Column="1" Grid.Row="0" FontSize="Micro"/>
-                                <Image Grid.Row="0" Grid.Column="0" Margin="5,0,0,0" Source="outline_people_black_24"/>
-                                <Picker Grid.Column="1" ItemsSource="{Binding Genders,Mode=TwoWay}" Grid.Row="0"
-                                    TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"
-                                    BackgroundColor="Transparent" Margin="5,10,5,0" SelectedItem="{Binding SelectedGender,Mode=TwoWay}" />
-                                <Rectangle Fill="Black" Grid.Column="0" Grid.ColumnSpan="3" StrokeThickness="2" Grid.Row="1"/>
-                                <Image Grid.Column="2" WidthRequest="40" HeightRequest="40" VerticalOptions="Center" Margin="0,2,3,0"
-                                       Source="outline_arrow_drop_down_black_24" Grid.Row="0" HorizontalOptions="EndAndExpand"/>
-                            </Grid>
+        <ScrollView Margin="30,10">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid  Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Orientation="Horizontal" 
+                         InputTransparent="False"  Grid.Column="0"
+                         ui:Gesture.TapCommand="{Binding BackCommand}">
+                        <Label TextColor="White" Margin="0,20" FontSize="Large"
+                       Grid.Row="0" IsEnabled="True"
+                       Text="{x:Static fonts:FontAwesomeIcons.ChevronLeft}"
+                       FontFamily="{StaticResource FontAwesomeSolid}"/>
+                        <Label Text="Back" Margin="2,20" TextColor="{StaticResource EditTextColor}"/>
+                       
+                    </StackLayout>
+                    <Label Text="REGISTER AS CUSTOMER" Grid.Column="1" Margin="2,20" TextColor="{StaticResource EditTextColor}"/>
+                </Grid>
+               
+
+                <Image Source="xamarin_logo.png" Margin="20,10" Aspect="AspectFit"
+                       FlowDirection="MatchParent" Grid.Row="1"/>
+
+               
+                    <StackLayout Grid.Row="2">
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                TextColor="{StaticResource EditTextColor}"
+                                Placeholder="Name" Keyboard="Text"
+                                Text="{Binding Name}" 
+                                PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
 
                         </panCake:PancakeView>
-                        <material:MaterialTextField AlwaysShowUnderline="True"  UnderlineColor="Black" Margin="5"
-                                            LeadingIcon="outline_email_black_24" 
-                                            Text="{Binding Email}" Placeholder="Email"
-                                        IsAutoCapitalizationEnabled="True" InputType="Email"/>
-                        <material:MaterialTextField AlwaysShowUnderline="True"  UnderlineColor="Black" Margin="5"
-                                            LeadingIcon="outline_smartphone_black_24" 
-                                            Text="{Binding MobileNumber}" Placeholder="Mobile Number"
-                                        IsAutoCapitalizationEnabled="True" InputType="Telephone"/>
-                        <material:MaterialButton BackgroundColor="Black" Elevation="4" Text="Generate Otp" CharacterSpacing="0" Margin="5"
-                                                 Command="{Binding OtpCommand}"/>
+
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                        <Grid  HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Entry  Grid.Column="0" BackgroundColor="Transparent" HorizontalOptions="Fill"
+                                TextColor="{StaticResource EditTextColor}"
+                                Placeholder="Mobile Number" Keyboard="Numeric"
+                                Text="{Binding MobileNumber}" 
+                                PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                            <StackLayout ui:Gesture.TapCommand="{Binding OtpCommand}"
+                                         Grid.Column="1"
+                                         VerticalOptions="Center"
+                                         IsEnabled="{Binding EnableValidateOtp}"
+                                         HorizontalOptions="End">
+                                <panCake:PancakeView 
+                                                 Padding="5,0" VerticalOptions="Center"
+                                                 BackgroundColor="{Binding VerifyButtonColor}" 
+                                                 CornerRadius="8">
+                                    <Label Padding="2"
+                                       TextColor="{StaticResource EditTextColor}"
+                                        HorizontalOptions="End" VerticalOptions="Center"
+                                       TextTransform="None" Text="Verify" FontSize="Small"/>
+                                </panCake:PancakeView>
+                            </StackLayout>                           
+                            
+                        </Grid>                          
+
+                    </panCake:PancakeView>
+
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry BackgroundColor="Transparent"
+                                TextColor="{StaticResource EditTextColor}"
+                                Placeholder="PIN" Keyboard="Numeric"
+                                Text="{Binding Password}" 
+                                PlaceholderColor="{StaticResource EditTextColor}">
+                                <Entry.Behaviors>
+                                    <xct:MaskedBehavior 
+                                            Mask="AAAA" 
+                                            UnMaskedCharacter="A"        />
+                                </Entry.Behaviors>
+                            </Entry>
+
+                        </panCake:PancakeView>
+
+                    <Button CornerRadius="10" 
+                            BackgroundColor="{StaticResource ButtonBackgroundColor}" 
+                            TextColor="{StaticResource BackgroundColor}" 
+                            Command="{Binding RegisterCommand}"
+                            Text="SIGNUP" Margin="10"/>
+                      
                     </StackLayout>
-                </panCake:PancakeView>
-            </ScrollView>
-        </panCake:PancakeView>
+            </Grid>
+        </ScrollView>
+        
+               
+          
     </ContentPage.Content>
 </ContentPage>

@@ -1,27 +1,53 @@
 ﻿<rg:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:rg="http://rotorgames.com"
-            BackgroundColor="Gray"
-              BackgroundClicked="PopupPage_BackgroundClicked"
-              HasSystemPadding="False"
-              Padding="10"
-              CloseWhenBackgroundIsClicked="True"
-               xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             BackgroundColor="Transparent"
+             BackgroundClicked="PopupPage_BackgroundClicked"
+             HasSystemPadding="False"
+             Padding="10"
+             CloseWhenBackgroundIsClicked="True"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="App.Views.OtpValidationPopupPage">
     <ContentPage.Content>
-        <panCake:PancakeView CornerRadius="10" HorizontalOptions="FillAndExpand" BackgroundColor="WhiteSmoke" VerticalOptions="Center"
+        <panCake:PancakeView Margin="20" CornerRadius="10" HorizontalOptions="FillAndExpand"
+                             BackgroundColor="{StaticResource BackgroundColor}" VerticalOptions="Center"
+                             
+                             
                  >
+            <panCake:PancakeView.Border>
+                <panCake:Border Thickness="2" Color="Gray"/>
+            </panCake:PancakeView.Border>
+
             <StackLayout Margin="20,50">
-                <Label HorizontalOptions="Center" TextColor="Black"
+
+                <Label HorizontalOptions="Center" TextColor="{StaticResource EditTextColor}"
                        Text="Validate Otp"
                        FontSize="16" />
 
-                <material:MaterialTextField x:Name="txtOtp" LeadingIcon="outline_smartphone_black_24" WidthRequest="120" Placeholder="Enter Otp" InputType="Numeric" UnderlineColor="Black" Margin="5"/>
-                <material:MaterialButton Elevation="4" WidthRequest="120" Text="Validate" Clicked="MaterialButton_Clicked" CharacterSpacing="0" TextColor="White" BackgroundColor="Black" Margin="5"/>
-                <material:MaterialChip x:Name="chipMessage"
-                                                       TextColor="Red"
-                                                       Margin="5"/>
+                <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                    <panCake:PancakeView.Border>
+                        <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                    </panCake:PancakeView.Border>
+
+                    <Entry BackgroundColor="Transparent" x:Name="txtOtp"
+                                TextColor="{StaticResource EditTextColor}"
+                                Placeholder="Enter Otp" Keyboard="Numeric"
+                                Text="{Binding Otp}" 
+                                PlaceholderColor="{StaticResource EditTextColor}">
+                    </Entry>
+
+                </panCake:PancakeView>
+
+                <Button CornerRadius="10" IsEnabled="{Binding EnableOtpValidation}"
+                            BackgroundColor="{StaticResource ButtonBackgroundColor}" 
+                            TextColor="{StaticResource BackgroundColor}" 
+                            Command="{Binding OtpValidateCommand}"
+                            Text="Validate" Margin="10"/>
+
             </StackLayout>
         </panCake:PancakeView>
     </ContentPage.Content>
