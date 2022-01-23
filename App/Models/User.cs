@@ -13,5 +13,5 @@ namespace App.Models
         public string name { get; set; }
         public string merchantType { get; set; }
         public string deviceId { get; set; }
-    }
+    }   
 }

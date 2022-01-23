@@ -75,7 +75,7 @@ namespace App.ViewModels
 
         public RegisterMerchantViewModel()
         {
-            MerchantTypes = new List<string>() { "Shop Services", "Home Services" };
+            MerchantTypes = new List<string>() { "Shop Owner", "Distributor","Professional","Others" };
             UserTypes = new List<string>() { "User", "Merchant" };
             Genders = new List<string> { "Male", "Female", "Others" };
             RegisterCommand = new Command(OnRegisterClicked);

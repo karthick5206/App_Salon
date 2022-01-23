@@ -81,7 +81,7 @@
 
                     </panCake:PancakeView>
 
-                    <Label TextDecorations="Underline" 
+                    <Label TextDecorations="Underline" ui:Gesture.TapCommand="{Binding ForgotPasswordCommand}"
                            TextColor="White" 
                            Text="Forgot Password?" 
                            FontSize="Small" Margin="15,5"/>
