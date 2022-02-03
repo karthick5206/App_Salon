@@ -1,7 +1,6 @@
 ﻿using Acr.UserDialogs;
 using App.Services;
 using App.ViewModels;
-using Plugin.Toast;
 using Rg.Plugins.Popup.Pages;
 using System;
 using System.Collections.Generic;

@@ -17,7 +17,6 @@ namespace App.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            XF.Material.Droid.Material.Init(this, savedInstanceState);
             Rg.Plugins.Popup.Popup.Init(this);
             UserDialogs.Init(this);
             LoadApplication(new App());

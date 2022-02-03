@@ -164,7 +164,7 @@ namespace App.ViewModels
                         MessageTextColor = System.Drawing.Color.Green,
                         Position = ToastPosition.Bottom
                     });
-                    await Shell.Current.GoToAsync("//LoginPage");
+                    await Shell.Current.GoToAsync("//MerchantInfoPage");
                 }
                 else
                 {
