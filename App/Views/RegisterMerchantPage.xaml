@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App.Views.RegisterMerchantPage"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              BackgroundColor="{StaticResource BackgroundColor}"
              xmlns:ui="clr-namespace:Vapolia.Lib.Ui;assembly=XamarinFormsGesture"
@@ -144,7 +143,7 @@
 
                             <Grid  HorizontalOptions="FillAndExpand">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/> 
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 

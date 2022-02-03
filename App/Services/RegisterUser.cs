@@ -35,7 +35,7 @@ namespace App.Services
                 {
                     apiResponse.IsSuccessStatusCode = true;
                     apiResponse.Message = "Success";
-                    apiResponse.Data = JsonConvert.DeserializeObject<Dictionary<string, string>>(await response.Content.ReadAsStringAsync());
+                    //apiResponse.Data = JsonConvert.DeserializeObject<Dictionary<string, string>>(await response.Content.ReadAsStringAsync());
                     return apiResponse;
                 }
             }
@@ -147,7 +147,7 @@ namespace App.Services
                 {
                     apiResponse.IsSuccessStatusCode = true;
                     apiResponse.Message = "Success";
-                    apiResponse.Data = JsonConvert.DeserializeObject<Dictionary<string, string>>((await response.Content.ReadAsStringAsync())); ;
+                    //apiResponse.Data = JsonConvert.DeserializeObject<Dictionary<string, string>>((await response.Content.ReadAsStringAsync())); ;
                     return apiResponse;
                 }
             }

@@ -1,7 +1,6 @@
 ﻿using App.Models;
 using App.Services;
 using App.Views;
-using Plugin.Toast;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -28,7 +27,6 @@ namespace App.ViewModels
             RegisterCommand = new Command(OnRegisterClicked);
             ForgotPasswordCommand = new Command(OnForgotPasswordClicked);
             RegisterUser = DependencyService.Resolve<RegisterUser>();
-            //PropertyChanged += (_,__) => LoginCommand.CanExecute(null);
         }
 
         private bool Valid(object parameter) =>
@@ -63,7 +61,6 @@ namespace App.ViewModels
                         MessageTextColor = System.Drawing.Color.Green,
                         Position = ToastPosition.Bottom
                     });
-                    //CrossToastPopUp.Current.ShowToastSuccess("Login Success", Plugin.Toast.Abstractions.ToastLength.Short);
                     await Shell.Current.GoToAsync("//AboutPage");
                 }
                 else
@@ -74,7 +71,6 @@ namespace App.ViewModels
                         MessageTextColor = System.Drawing.Color.Red,
                         Position = ToastPosition.Bottom
                     });
-                    //CrossToastPopUp.Current.ShowToastError("Login Failed", Plugin.Toast.Abstractions.ToastLength.Short);
                     LoginMessage = "Login Failed";
                 }
             }

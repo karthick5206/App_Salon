@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Views.RegisterMerchantInformation" xmlns:panCake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             xmlns:ui="clr-namespace:Vapolia.Lib.Ui;assembly=XamarinFormsGesture"
+              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:fonts="clr-namespace:FontAwesome"
+             Opacity="{Binding Opacity}"
+             Shell.TabBarIsVisible="False"
+             Shell.NavBarIsVisible="False">
+    <ContentPage.Content>
+        <ScrollView Margin="30,10">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+
+                <Grid  Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Orientation="Horizontal" 
+                         InputTransparent="False"  Grid.Column="0"
+                         ui:Gesture.TapCommand="{Binding BackCommand}">
+                        <Label TextColor="White" Margin="0,20" FontSize="Large"
+                       Grid.Row="0" IsEnabled="True"
+                       Text="{x:Static fonts:FontAwesomeIcons.ChevronLeft}"
+                       FontFamily="{StaticResource FontAwesomeSolid}"/>
+                        <Label Text="Back" Margin="2,20" TextColor="{StaticResource EditTextColor}"/>
+
+                    </StackLayout>
+                    <Label Text="REGISTER MERCHANT DETAILS" Grid.Column="1" Margin="2,20" TextColor="{StaticResource EditTextColor}"/>
+                </Grid>
+
+
+                <Image Source="xamarin_logo.png" Margin="10" Aspect="AspectFit"
+                       FlowDirection="MatchParent" Grid.Row="1"/>
+
+                <panCake:PancakeView Grid.Row="2" VerticalOptions="Start" 
+                                     CornerRadius="20"
+                                      BackgroundColor="{StaticResource BackgroundColor}">
+                    <StackLayout>
+
+                        <!--#region Company Name -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Company Name" Keyboard="Text"
+                                        Text="{Binding CompanyName}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Name -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Name" Keyboard="Text"
+                                        Text="{Binding Name}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+                        <!--#region Address1 -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent" 
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Address 1" Keyboard="Text"
+                                        Text="{Binding Address1}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+                        <!--#region Address2 -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Address 2" Keyboard="Text"
+                                        Text="{Binding Address2}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Phone -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Phone" Keyboard="Numeric"
+                                        Text="{Binding Phone}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region LandLine -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Land Line" Keyboard="Text"
+                                        Text="{Binding LandLine}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Country Name -->
+                        <panCake:PancakeView CornerRadius="10"  Margin="5" Padding="5">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Picker Grid.Column="1" Title="Select Country" TitleColor="{StaticResource EditTextColor}"
+                                    ItemsSource="{Binding CountryNames,Mode=TwoWay}" Grid.Row="0"
+                                    TextColor="{StaticResource EditTextColor}" VerticalOptions="Center"
+                                    Margin="5,5,5,0" SelectedItem="{Binding SelectedCountryName,Mode=TwoWay}" />
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region States -->
+                        <panCake:PancakeView CornerRadius="10"  Margin="5" Padding="5">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Picker Grid.Column="1" Title="Select State" TitleColor="{StaticResource EditTextColor}"
+                                    ItemsSource="{Binding States,Mode=TwoWay}" Grid.Row="0"
+                                    TextColor="{StaticResource EditTextColor}" VerticalOptions="Center"
+                                    Margin="5,5,5,0" SelectedItem="{Binding SelectedStateName,Mode=TwoWay}" />
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region PAN -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="PAN" Keyboard="Text"
+                                        Text="{Binding PAN}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Zip Code -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Zip Code" Keyboard="Text"
+                                        Text="{Binding ZipCode}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Aadhaar -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Aadhaar" Keyboard="Numeric"
+                                        Text="{Binding Aadhaar}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Website -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Website" Keyboard="Text"
+                                        Text="{Binding Website}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <Label Text="Company Activity" Margin="0,20" Padding="10"
+                               BackgroundColor="{StaticResource ButtonBackgroundColor}"
+                               TextColor="{StaticResource EditTextColor}"/>
+
+
+                        <!--#region Service Offers -->
+                        <panCake:PancakeView CornerRadius="10"  Margin="5" Padding="5">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Picker Grid.Column="1" Title="Service Offers" TitleColor="{StaticResource EditTextColor}"
+                                    ItemsSource="{Binding ServiceOffers,Mode=TwoWay}" Grid.Row="0"
+                                    TextColor="{StaticResource EditTextColor}" VerticalOptions="Center"
+                                    Margin="5,5,5,0" SelectedItem="{Binding SelectedServiceOffers,Mode=TwoWay}" />
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+
+                        <!--#region Type Of Shop -->
+                        <panCake:PancakeView CornerRadius="10"  Margin="5" Padding="5">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Picker Grid.Column="1" Title="Type of shops" TitleColor="{StaticResource EditTextColor}"
+                                    ItemsSource="{Binding TypesOfShop,Mode=TwoWay}" Grid.Row="0"
+                                    TextColor="{StaticResource EditTextColor}" VerticalOptions="Center"
+                                    Margin="5,5,5,0" SelectedItem="{Binding SelectedTypesOfShop,Mode=TwoWay}" />
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Days -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Days" Keyboard="Numeric"
+                                        Text="{Binding Website}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Days -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <panCake:PancakeView Grid.Column="0" CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}">
+                                    <panCake:PancakeView.Border>
+                                        <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                                    </panCake:PancakeView.Border>
+                                    <Picker  Title="From" TitleColor="{StaticResource EditTextColor}"
+                                        ItemsSource="{Binding OfficeHours,Mode=TwoWay}" Grid.Row="0"
+                                        TextColor="{StaticResource EditTextColor}" VerticalOptions="Center"
+                                        Margin="5,5,5,0" SelectedItem="{Binding SelectedOfficeHoursMorning,Mode=TwoWay}" />
+                                </panCake:PancakeView>
+
+                                <Label Text="To" Padding="10" Margin="0,10" Grid.Column="1" IsVisible="False"
+                                   BackgroundColor="{StaticResource ButtonBackgroundColor}"
+                                   TextColor="{StaticResource EditTextColor}"/>
+
+                                <panCake:PancakeView Grid.Column="2" CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}">
+                                    <panCake:PancakeView.Border>
+                                        <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                                    </panCake:PancakeView.Border>
+
+                                    <Picker  Title="To" TitleColor="{StaticResource EditTextColor}"
+                                        ItemsSource="{Binding OfficeHours,Mode=TwoWay}" Grid.Row="0"
+                                        TextColor="{StaticResource EditTextColor}" VerticalOptions="Center"
+                                        Margin="5,5,5,0" SelectedItem="{Binding SelectedOfficeHoursEvening,Mode=TwoWay}" />
+                                </panCake:PancakeView>
+
+                            </Grid>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Holiday -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                    TextColor="{StaticResource EditTextColor}"
+                                    Placeholder="Holiday" Keyboard="Text"
+                                    Text="{Binding Holiday}" 
+                                    PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region No of seats -->
+                        <panCake:PancakeView CornerRadius="10"  Margin="5" Padding="5">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Picker Grid.Column="1" Title="No of seats" TitleColor="{StaticResource EditTextColor}"
+                                    ItemsSource="{Binding NoOfSeats,Mode=TwoWay}" Grid.Row="0"
+                                    TextColor="{StaticResource EditTextColor}" VerticalOptions="Center"
+                                    Margin="5,5,5,0" SelectedItem="{Binding SelectedNoOfSeats,Mode=TwoWay}" />
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Supervisor Name -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                    TextColor="{StaticResource EditTextColor}"
+                                    Placeholder="Supervisor/Responsible Person Name" Keyboard="Text"
+                                    Text="{Binding SupervisorName}" 
+                                    PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Phone -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Phone Number" Keyboard="Numeric"
+                                        Text="{Binding Phone}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <!--#region Phone -->
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Entry  BackgroundColor="Transparent"
+                                        TextColor="{StaticResource EditTextColor}"
+                                        Placeholder="Amenties" Keyboard="Text"
+                                        Text="{Binding Amenties}" 
+                                        PlaceholderColor="{StaticResource EditTextColor}">
+                            </Entry>
+
+                        </panCake:PancakeView>
+                        <!--#endregion-->
+
+                        <panCake:PancakeView CornerRadius="10" Padding="10,5"
+                                         BackgroundColor="{StaticResource BackgroundColor}"
+                                         Margin="5,10">
+
+                            <panCake:PancakeView.Border>
+                                <panCake:Border Thickness="2" Color="{StaticResource ControlBorderColor}"/>
+                            </panCake:PancakeView.Border>
+
+                            <Grid  HorizontalOptions="FillAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Entry Focused="Entry_Focused" IsReadOnly="True"
+                                       x:Name="txtImagePath"
+                                       Grid.Column="0" BackgroundColor="Transparent" HorizontalOptions="Fill"
+                                    TextColor="{StaticResource EditTextColor}"
+                                    Placeholder="Image" Keyboard="Numeric"
+                                    Text="{Binding Image}" 
+                                    PlaceholderColor="{StaticResource EditTextColor}">
+                                </Entry>
+
+                                <StackLayout ui:Gesture.TapCommand="{Binding OtpCommand}"
+                                         Grid.Column="1"
+                                         VerticalOptions="Center"
+                                         HorizontalOptions="End">
+                                    <panCake:PancakeView 
+                                                 Padding="5,0" VerticalOptions="Center"
+                                                 BackgroundColor="{StaticResource ButtonBackgroundColor}" 
+                                                 CornerRadius="8">
+                                        <Label Padding="2"
+                                           TextColor="{StaticResource EditTextColor}"
+                                            HorizontalOptions="End" VerticalOptions="Center"
+                                           TextTransform="None" Text="Upload" FontSize="Small"/>
+                                    </panCake:PancakeView>
+                                </StackLayout>
+
+                            </Grid>
+
+                        </panCake:PancakeView>
+
+                        <Button CornerRadius="10" 
+                                    BackgroundColor="{StaticResource ButtonBackgroundColor}" 
+                                    TextColor="{StaticResource BackgroundColor}" 
+                                    Command="{Binding RegisterCommand}"
+                                    Text="SUBMIT" Margin="10"/>
+
+                    </StackLayout>
+                </panCake:PancakeView>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
